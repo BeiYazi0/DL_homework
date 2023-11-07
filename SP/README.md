@@ -3,27 +3,25 @@
 直接运行 train.py 可训练一个用于手写数字识别的模型。
 直接运行 test.py 可加载一个用于手写数字识别的模型。
 
----
-
 # 目录
 
-<ul class="toc-item"></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#1.要求" data-toc-modified-id="1.要求"><span class="toc-item-num">&nbsp;&nbsp;</span>1.要求</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#1.1模型" data-toc-modified-id="1.1模型"><span class="toc-item-num">&nbsp;&nbsp;</span>1.1模型</a></span></li><li><span><i class="fa fa-fw"></i><a href="#1.2要求" data-toc-modified-id="1.2要求"><span class="toc-item-num">&nbsp;&nbsp;</span>1.2要求</a></span></li></ul></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.准备工作" data-toc-modified-id="2.准备工作"><span class="toc-item-num">&nbsp;&nbsp;</span>2.准备工作</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.1导入依赖。" data-toc-modified-id="2.1导入依赖"><span class="toc-item-num">&nbsp;&nbsp;</span>2.1导入依赖。</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.2-MINST数据集" data-toc-modified-id="2.2-MINST数据集"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2 MINST数据集</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.2.1-加载手写数字数据集" data-toc-modified-id="2.2.1-加载手写数字数据集"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2.1 加载手写数字数据集</a></span></li><li><span><i class="fa fa-fw"></i><a href="#2.2.2-数据格式标准化" data-toc-modified-id="2.2.2-数据格式标准化"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2.2 数据格式标准化</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.3-激活函数" data-toc-modified-id="2.3-激活函数"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3 激活函数</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.3.1-ReLU-&amp;-Sigmoid-&amp;-Softmax" data-toc-modified-id="2.3.1-ReLU-&amp;-Sigmoid-&amp;-Softmax"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3.1 ReLU &amp; Sigmoid &amp; Softmax</a></span></li><li><span><i class="fa fa-fw"></i><a href="#2.3.2-激活函数的梯度的函数" data-toc-modified-id="2.3.2-激活函数的梯度的函数"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3.2 激活函数的梯度的函数</a></span></li></ul></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#3.CNN构成" data-toc-modified-id="3.CNN构成"><span class="toc-item-num">&nbsp;&nbsp;</span>3.CNN构成</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#3.1-卷积层" data-toc-modified-id="3.1-卷积层"><span class="toc-item-num">&nbsp;&nbsp;</span>3.1 卷积层</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.2-池化层" data-toc-modified-id="3.2-池化层"><span class="toc-item-num">&nbsp;&nbsp;</span>3.2 池化层</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.3-im2col" data-toc-modified-id="3.3-im2col"><span class="toc-item-num">&nbsp;&nbsp;</span>3.3 im2col</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.4-卷积和池化的高效实现" data-toc-modified-id="3.4-卷积和池化的高效实现"><span class="toc-item-num">&nbsp;&nbsp;</span>3.4 卷积和池化的高效实现</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.构建神经网络" data-toc-modified-id="4.构建神经网络"><span class="toc-item-num">&nbsp;&nbsp;</span>4.构建神经网络</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.1-前向传播" data-toc-modified-id="4.1-前向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.1 前向传播</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.2-反向传播" data-toc-modified-id="4.2-反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2 反向传播</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.2.1-卷积层的反向传播" data-toc-modified-id="4.2.1-卷积层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.1 卷积层的反向传播</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.2-池化层的反向传播" data-toc-modified-id="4.2.2-池化层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.2 池化层的反向传播</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.3-flatten-层的反向" data-toc-modified-id="4.2.3-flatten-层的反向"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.3 flatten 层的反向</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.4-隐层的反向传播" data-toc-modified-id="4.2.4-隐层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.4 隐层的反向传播</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#4.3-损失函数" data-toc-modified-id="4.3-损失函数"><span class="toc-item-num">&nbsp;&nbsp;</span>4.3 损失函数</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.4-层类" data-toc-modified-id="4.4-层类"><span class="toc-item-num">&nbsp;&nbsp;</span>4.4 层类</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.5-model" data-toc-modified-id="4.5-model"><span class="toc-item-num">&nbsp;&nbsp;</span>4.5 model</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.6-模型保存和加载" data-toc-modified-id="4.6-模型保存和加载"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6 模型保存和加载</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.6.1-模型保存" data-toc-modified-id="4.6.1-模型保存"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6.1 模型保存</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.6.2-模型加载" data-toc-modified-id="4.6.2-模型加载"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6.2 模型加载</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.7-可视化" data-toc-modified-id="4.7-可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7 可视化</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.7.1-accuracy-&amp;-loss-可视化" data-toc-modified-id="4.7.1-accuracy-&amp;-loss-可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7.1 accuracy &amp; loss 可视化</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.7.2-混淆矩阵可视化" data-toc-modified-id="4.7.2-混淆矩阵可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7.2 混淆矩阵可视化</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#4.8-测试" data-toc-modified-id="4.8-测试"><span class="toc-item-num">&nbsp;&nbsp;</span>4.8 测试</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#5.手写数字识别" data-toc-modified-id="5.手写数字识别"><span class="toc-item-num">&nbsp;&nbsp;</span>5.手写数字识别</a></span></li></ul>
+<ul class="toc-item"></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#1.要求" data-toc-modified-id="1.要求"><span class="toc-item-num">&nbsp;&nbsp;</span>1.要求</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#1.1模型" data-toc-modified-id="1.1模型"><span class="toc-item-num">&nbsp;&nbsp;</span>1.1模型</a></span></li><li><span><i class="fa fa-fw"></i><a href="#1.2要求" data-toc-modified-id="1.2要求"><span class="toc-item-num">&nbsp;&nbsp;</span>1.2要求</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.准备工作" data-toc-modified-id="2.准备工作"><span class="toc-item-num">&nbsp;&nbsp;</span>2.准备工作</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.1导入依赖。" data-toc-modified-id="2.1导入依赖"><span class="toc-item-num">&nbsp;&nbsp;</span>2.1导入依赖。</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.2-MINST数据集" data-toc-modified-id="2.2-MINST数据集"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2 MINST数据集</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.2.1-加载手写数字数据集" data-toc-modified-id="2.2.1-加载手写数字数据集"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2.1 加载手写数字数据集</a></span></li><li><span><i class="fa fa-fw"></i><a href="#2.2.2-数据格式标准化" data-toc-modified-id="2.2.2-数据格式标准化"><span class="toc-item-num">&nbsp;&nbsp;</span>2.2.2 数据格式标准化</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#2.3-激活函数" data-toc-modified-id="2.3-激活函数"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3 激活函数</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#2.3.1-ReLU-&amp;-Sigmoid-&amp;-Softmax" data-toc-modified-id="2.3.1-ReLU-&amp;-Sigmoid-&amp;-Softmax"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3.1 ReLU &amp; Sigmoid &amp; Softmax</a></span></li><li><span><i class="fa fa-fw"></i><a href="#2.3.2-激活函数的梯度的函数" data-toc-modified-id="2.3.2-激活函数的梯度的函数"><span class="toc-item-num">&nbsp;&nbsp;</span>2.3.2 激活函数的梯度的函数</a></span></li></ul></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#3.CNN构成" data-toc-modified-id="3.CNN构成"><span class="toc-item-num">&nbsp;&nbsp;</span>3.CNN构成</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#3.1-卷积层" data-toc-modified-id="3.1-卷积层"><span class="toc-item-num">&nbsp;&nbsp;</span>3.1 卷积层</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.2-池化层" data-toc-modified-id="3.2-池化层"><span class="toc-item-num">&nbsp;&nbsp;</span>3.2 池化层</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.3-im2col" data-toc-modified-id="3.3-im2col"><span class="toc-item-num">&nbsp;&nbsp;</span>3.3 im2col</a></span></li><li><span><i class="fa fa-fw"></i><a href="#3.4-卷积和池化的高效实现" data-toc-modified-id="3.4-卷积和池化的高效实现"><span class="toc-item-num">&nbsp;&nbsp;</span>3.4 卷积和池化的高效实现</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.构建神经网络" data-toc-modified-id="4.构建神经网络"><span class="toc-item-num">&nbsp;&nbsp;</span>4.构建神经网络</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.1-前向传播" data-toc-modified-id="4.1-前向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.1 前向传播</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.2-反向传播" data-toc-modified-id="4.2-反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2 反向传播</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.2.1-卷积层的反向传播" data-toc-modified-id="4.2.1-卷积层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.1 卷积层的反向传播</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.2-池化层的反向传播" data-toc-modified-id="4.2.2-池化层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.2 池化层的反向传播</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.3-flatten-层的反向" data-toc-modified-id="4.2.3-flatten-层的反向"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.3 flatten 层的反向</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.2.4-隐层的反向传播" data-toc-modified-id="4.2.4-隐层的反向传播"><span class="toc-item-num">&nbsp;&nbsp;</span>4.2.4 隐层的反向传播</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#4.3-损失函数" data-toc-modified-id="4.3-损失函数"><span class="toc-item-num">&nbsp;&nbsp;</span>4.3 损失函数</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.4-层类" data-toc-modified-id="4.4-层类"><span class="toc-item-num">&nbsp;&nbsp;</span>4.4 层类</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.5-model" data-toc-modified-id="4.5-model"><span class="toc-item-num">&nbsp;&nbsp;</span>4.5 model</a></span></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.6-模型保存和加载" data-toc-modified-id="4.6-模型保存和加载"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6 模型保存和加载</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.6.1-模型保存" data-toc-modified-id="4.6.1-模型保存"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6.1 模型保存</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.6.2-模型加载" data-toc-modified-id="4.6.2-模型加载"><span class="toc-item-num">&nbsp;&nbsp;</span>4.6.2 模型加载</a></span></li></ul></li><li><span><i class="fa fa-fw fa-caret-down"></i><a href="#4.7-可视化" data-toc-modified-id="4.7-可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7 可视化</a></span><ul class="toc-item"><li><span><i class="fa fa-fw"></i><a href="#4.7.1-accuracy-&amp;-loss-可视化" data-toc-modified-id="4.7.1-accuracy-&amp;-loss-可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7.1 accuracy &amp; loss 可视化</a></span></li><li><span><i class="fa fa-fw"></i><a href="#4.7.2-混淆矩阵可视化" data-toc-modified-id="4.7.2-混淆矩阵可视化"><span class="toc-item-num">&nbsp;&nbsp;</span>4.7.2 混淆矩阵可视化</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#4.8-测试" data-toc-modified-id="4.8-测试"><span class="toc-item-num">&nbsp;&nbsp;</span>4.8 测试</a></span></li></ul></li><li><span><i class="fa fa-fw"></i><a href="#5.手写数字识别" data-toc-modified-id="5.手写数字识别"><span class="toc-item-num">&nbsp;&nbsp;</span>5.手写数字识别</a></span></li></ul>
 
 ---
 
-## 1. 要求
+## 1.要求
 
-### 1.1 模型
+### 1.1模型
 
 ![img](./img/1.png)
 
-### 1.2 作业要求
+### 1.2要求
 
 ![png](./img/2.png)
 
 ---
 
-## 2. 准备工作
+## 2.准备工作
 
 ### 2.1导入依赖。
 
@@ -272,7 +270,7 @@ def softmax_gradient(z):
 
 ---
 
-## 3. CNN 构成
+## 3.CNN构成
 
 ### 3.1 卷积层
 
@@ -704,9 +702,7 @@ print(f"最大池化error: {np.sum(test[0]-test_im2col[0])}\n最大池化id erro
 
 ---
 
-## 4. 构建神经网络
-
-
+## 4.构建神经网络
 
 ### 4.1 前向传播
 
@@ -1914,7 +1910,7 @@ print(model.evaluate(X_test[:1000], y_test[:1000]))
 
 ---
 
-## 5. 手写数字识别
+## 5.手写数字识别
 
 见[train](train.py)。
 
@@ -7617,6 +7613,9 @@ history_show(history)
 
 
     
+
+
+    
 ![png](./history/accuracy.png)
     
 
@@ -7680,3 +7679,118 @@ confusion_show(labels, model.predict_classes(X_test), y_test.argmax(axis = 1))
 在 idle 上运行上述代码的结果如下
 
 ![png](./img/result.png)
+
+接下来，我们使用一个新的网络来训练，其由卷积层、最大池化层、卷积层、最大池化层、Flatten层、隐层、输出层组成。
+
+训练代码如下。
+
+batch_size = 128, epochs = 1.
+
+
+```python
+from cnn.layers import *
+from cnn.models import Model, load_model
+from cnn.utils.visualization import history_show, confusion_show
+import numpy as np
+from scipy.io import loadmat
+import time
+
+data = loadmat('data/MNISTData.mat')
+
+X_train = data['X_Train']
+X_test = data['X_Test']
+y_train = data['D_Train'].astype(np.int32)
+y_test = data['D_Test'].astype(np.int32)
+
+X_train = np.expand_dims(X_train.transpose(2,0,1), axis=1)
+X_test = np.expand_dims(X_test.transpose(2,0,1), axis=1)
+y_train = y_train.T
+y_test = y_test.T
+
+input_layer = Input((1, 28, 28))
+model = Model(input_layer, "MNIST_cnn")
+
+# 添加网络层
+model.add_layer(Conv2D(32, 5, input_shape = (1, 28, 28), activate_fcn = "ReLU"))
+model.add_layer(MaxPooling2D(2, input_shape = (32, 24, 24)))
+model.add_layer(Conv2D(64, 5, input_shape = (32, 12, 12), activate_fcn = "ReLU"))
+model.add_layer(MaxPooling2D(2, input_shape = (64, 8, 8)))
+model.add_layer(Flatten((64, 4, 4)))
+model.add_layer(Dense(100, 1024, activate_fcn = "ReLU"))
+model.add_layer(Output(10, 100))
+
+model.compile(0.01, "cross_tropy")
+
+T1 = time.time()
+history = model.fit(X_train, y_train, batch_size = 128, epochs = 1, verbose = 1, shuffle = True)
+T2 = time.time()
+print('训练用时:%s分' % ((T2 - T1) / 60))
+
+print(f"模型在测试集上的表现\n{model.evaluate(X_test, y_test)}")
+history_show(history)
+labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+confusion_show(labels, model.predict_classes(X_test), y_test.argmax(axis = 1))
+
+model.save("model\\MNIST_cnn.h5")
+```
+
+我们把经过一轮训练的模型 MINST_cnn_train1 重新加载进来，查看整个神经网络，观察它在训练集上的表现。
+
+见[train_load.py](train_load.py)。
+
+
+```python
+from cnn.models import load_model
+
+model = load_model("model\\MNIST_cnn_train1.h5")
+model.summary()
+print(f"模型在测试集上的表现\n{model.evaluate(X_test, y_test)}")
+```
+
+    model name: MNIST_cnn
+    _________________________________________________________________
+    Layer                        Output Shape              Param #   
+    =================================================================
+    Conv2D                       (None, 32, 24, 24)        800                         
+    _________________________________________________________________
+    MaxPooling2D                 (None, 32, 12, 12)        0                           
+    _________________________________________________________________
+    Conv2D                       (None, 64, 8, 8)          51200                       
+    _________________________________________________________________
+    MaxPooling2D                 (None, 64, 4, 4)          0                           
+    _________________________________________________________________
+    Flatten                      (None, 1024)              0                           
+    _________________________________________________________________
+    Dense                        (None, 100)               102400                      
+    _________________________________________________________________
+    Output                       (None, 10)                1000                        
+    _________________________________________________________________
+    =================================================================
+    Total params: 155400
+    _________________________________________________________________
+    模型在测试集上的表现
+    (0.9479, 0.2944474919110827)
+    
+
+表现还不够好，我们可以再训练一轮，再观察它在测试集上的表现。
+
+
+```python
+history = model.fit(X_train, y_train, batch_size = 128, epochs = 1, verbose = 1, shuffle = True)
+
+print(f"模型在测试集上的表现\n{model.evaluate(X_test, y_test)}")
+labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+confusion_show(labels, model.predict_classes(X_test), y_test.argmax(axis = 1))
+```
+
+最后，将其保存为 MNIST_cnn_train2.h5，这里直接给出训练2轮的结果。
+
+
+```python
+model = load_model("model\\MNIST_cnn_train2.h5")
+print(f"模型在测试集上的表现\n{model.evaluate(X_test, y_test)}")
+```
+
+    模型在测试集上的表现
+    (0.9754, 0.14496230891750145)
+    
