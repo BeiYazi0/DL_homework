@@ -22,13 +22,13 @@ model = Model(input_layer, "POI_rnn")
 model.add_layer(Recurrent(10, 3, activate_fcn = "tanh"))
 model.add_layer(Output(3, 10, activate_fcn = "Linear"))
 
-model.compile(0.01, "MSE", "MAE")
+model.compile(0.015, "MSE", "MAE")
 
 #model.summary()
 
 
 T1 = time.time()
-history = model.fit(X_train, y_train, batch_size = 50, epochs = 6, verbose = 1, shuffle = False)
+history = model.fit(X_train, y_train, batch_size = 50, epochs = 18, verbose = 2, shuffle = False)
 T2 = time.time()
 print('训练用时:%s秒' % ((T2 - T1)))
 
