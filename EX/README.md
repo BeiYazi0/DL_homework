@@ -83,3 +83,7 @@ async def predict(url, model):
 ```
 
 最终效果见 [README](./pcr_recognition/README.md) 中 princess connect 指令的测试效果，可以看到只需要发出指令并附上图片，hoshinobot就能够调用模型对其进行推理从而识别图中的角色。
+
+## 备注
+
+做到最后才发现，数据集的像素值忘了归一化，以后有机会再改吧。
